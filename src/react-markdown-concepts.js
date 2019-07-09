@@ -7,6 +7,7 @@ const PropTypes = require('prop-types')
 const addListMetadata = require('mdast-add-list-metadata')
 const naiveHtml = require('./plugins/naive-html')
 const disallowNode = require('./plugins/disallow-node')
+const conceptParser = require('./plugins/concept-parser')
 const astToReact = require('./ast-to-react')
 const wrapTableRows = require('./wrap-table-rows')
 const getDefinitions = require('./get-definitions')
@@ -16,7 +17,7 @@ const symbols = require('./symbols')
 
 const allTypes = Object.keys(defaultRenderers)
 
-const ReactMarkdown = function ReactMarkdown(props) {
+const ReactMarkdownConcepts = function ReactMarkdownConcepts(props) {
   const src = props.source || props.children || ''
   const parserOptions = props.parserOptions
 
@@ -26,7 +27,10 @@ const ReactMarkdown = function ReactMarkdown(props) {
 
   const renderers = xtend(defaultRenderers, props.renderers)
 
-  const plugins = [[parse, parserOptions]].concat(props.plugins || [])
+  let plugins = [[parse, parserOptions]].concat(props.plugins || [])
+  if (props.concepts) {
+      plugins = plugins.concat([[conceptParser, props.concepts]])
+  }
   const parser = plugins.reduce(applyParserPlugin, unified())
 
   const rawAst = parser.parse(src)
@@ -77,7 +81,7 @@ function determineAstPlugins(props) {
   return props.astPlugins ? plugins.concat(props.astPlugins) : plugins
 }
 
-ReactMarkdown.defaultProps = {
+ReactMarkdownConcepts.defaultProps = {
   renderers: {},
   escapeHtml: true,
   skipHtml: false,
@@ -89,9 +93,10 @@ ReactMarkdown.defaultProps = {
   parserOptions: {}
 }
 
-ReactMarkdown.propTypes = {
+ReactMarkdownConcepts.propTypes = {
   className: PropTypes.string,
   source: PropTypes.string,
+  concepts: PropTypes.array,
   children: PropTypes.string,
   sourcePos: PropTypes.bool,
   rawSourcePos: PropTypes.bool,
@@ -110,8 +115,8 @@ ReactMarkdown.propTypes = {
   parserOptions: PropTypes.object
 }
 
-ReactMarkdown.types = allTypes
-ReactMarkdown.renderers = defaultRenderers
-ReactMarkdown.uriTransformer = uriTransformer
+ReactMarkdownConcepts.types = allTypes
+ReactMarkdownConcepts.renderers = defaultRenderers
+ReactMarkdownConcepts.uriTransformer = uriTransformer
 
-module.exports = ReactMarkdown
+module.exports = ReactMarkdownConcepts

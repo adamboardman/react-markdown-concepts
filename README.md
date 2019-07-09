@@ -1,26 +1,15 @@
-# react-markdown
+# react-markdown-concepts
 
-Renders Markdown as pure React components.
+Renders Markdown as pure React components, with keyword concept highlighting and expansion, branched from react-markdown.
 
-[![npm version](https://img.shields.io/npm/v/react-markdown.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown)[![Build Status](https://img.shields.io/travis/rexxars/react-markdown/master.svg?style=flat-square)](https://travis-ci.org/rexxars/react-markdown)
-
-Demo available at https://rexxars.github.io/react-markdown/
-
----
-
-react-markdown is proudly sponsored by
-
-<a href="https://www.sanity.io/?utm_source=GitHub&utm_campaign=react-markdown" rel="nofollow" target="_blank">
-  <img src="https://www.sanity.io/static/images/logo_red.svg?v=2" width="300"><br />
-  Sanity: The Headless CMS Construction Kit
-</a>
+Demo of upstream react-markdown available at https://rexxars.github.io/react-markdown/
 
 ---
 
 ## Installing
 
 ```
-npm install --save react-markdown
+npm install --save react-markdown-concepts
 ```
 
 ## Basic usage
@@ -28,11 +17,12 @@ npm install --save react-markdown
 ```js
 const React = require('react')
 const ReactDOM = require('react-dom')
-const ReactMarkdown = require('react-markdown')
+const ReactMarkdownConcepts = require('react-markdown-concepts')
 
 const input = '# This is a header\n\nAnd this is a paragraph'
+const concepts = []; //array of objects containing Tag+Summary
 
-ReactDOM.render(<ReactMarkdown source={input} />, document.getElementById('container'))
+ReactDOM.render(<ReactMarkdownConcepts source={input} concepts={concepts} />, document.getElementById('container'))
 ```
 
 ## Upgrading to 4.0
@@ -82,7 +72,7 @@ this is a Good Thing™.
   single argument - `uri`. The returned value is used in place of the original. The default link URI
   transformer acts as an XSS-filter, neutralizing things like `javascript:`, `vbscript:` and `file:`
   protocols. If you specify a custom function, this default filter won't be called, but you can
-  access it as `require('react-markdown').uriTransformer`. If you want to disable the default
+  access it as `require('react-markdown-concepts').uriTransformer`. If you want to disable the default
   transformer, pass `null` to this option.
 - `transformImageUri` - _function|null_ Function that gets called for each encountered image with a
   single argument - `uri`. The returned value is used in place of the original.
@@ -94,16 +84,16 @@ this is a Good Thing™.
 
 ## Parsing HTML
 
-If you are in a trusted environment and want to parse and render HTML, you will want to use the `html-parser` plugin. For a default configuration, import `react-markdown/with-html` instead of the default:
+If you are in a trusted environment and want to parse and render HTML, you will want to use the `html-parser` plugin. For a default configuration, import `react-markdown-concepts/with-html` instead of the default:
 
 ```js
-const ReactMarkdown = require('react-markdown/with-html')
+const ReactMarkdownConcepts = require('react-markdown-concepts/with-html')
 
 const markdown = `
 This block of Markdown contains <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>, and will require the <code>html-parser</code> AST plugin to be loaded, in addition to setting the <code class="prop">escapeHtml</code> property to false.
 `
 
-<ReactMarkdown
+<ReactMarkdownConcepts
   source={markdown}
   escapeHtml={false}
 />
@@ -112,8 +102,8 @@ This block of Markdown contains <a href="https://en.wikipedia.org/wiki/HTML">HTM
 If you want to specify options for the HTML parsing step, you can instead import the HTML parser plugin directly:
 
 ```js
-const ReactMarkdown = require('react-markdown')
-const htmlParser = require('react-markdown/plugins/html-parser')
+const ReactMarkdownConcepts = require('react-markdown-concepts')
+const htmlParser = require('react-markdown-concepts/plugins/html-parser')
 
 // See https://github.com/aknuds1/html-to-react#with-custom-processing-instructions
 // for more info on the processing instructions
@@ -122,7 +112,7 @@ const parseHtml = htmlParser({
   processingInstructions: [/* ... */]
 })
 
-<ReactMarkdown
+<ReactMarkdownConcepts
   source={markdown}
   escapeHtml={false}
   astPlugins={[parseHtml]}

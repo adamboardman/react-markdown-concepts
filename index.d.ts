@@ -1,5 +1,5 @@
-// Type definitions for react-markdown > v3.3.0
-// Project: https://github.com/rexxars/react-markdown
+// Type definitions for react-markdown-concepts > v3.3.0
+// Project: https://github.com/adamboardman/react-markdown-concepts
 // Definitions by:
 // - Ruslan Ibragimov <https://github.com/IRus>
 // - Kohei Asai <me@axross.io>
@@ -8,9 +8,9 @@
 
 import {Component, ReactElement, ReactNode, ReactType} from 'react'
 
-declare class ReactMarkdown extends Component<ReactMarkdown.ReactMarkdownProps, {}> {}
+declare class ReactMarkdownConcepts extends Component<ReactMarkdownConcepts.ReactMarkdownConceptsProps, {}> {}
 
-declare namespace ReactMarkdown {
+declare namespace ReactMarkdownConcepts {
   interface Point {
     readonly line: number
     readonly column: number
@@ -64,7 +64,7 @@ declare namespace ReactMarkdown {
 
   export type LinkTargetResolver = (uri: string, text: string, title?: string) => string
 
-  export interface ReactMarkdownProps {
+  export interface ReactMarkdownConceptsProps {
     readonly className?: string
     readonly source?: string
     readonly sourcePos?: boolean
@@ -84,7 +84,7 @@ declare namespace ReactMarkdown {
     readonly plugins?: any[] | (() => void)
   }
 
-  interface RenderProps extends ReactMarkdownProps {
+  interface RenderProps extends ReactMarkdownConceptsProps {
     readonly definitions?: object
   }
 
@@ -123,4 +123,4 @@ declare namespace ReactMarkdown {
   export var uriTransformer: (uri: string) => string
 }
 
-export = ReactMarkdown
+export = ReactMarkdownConcepts

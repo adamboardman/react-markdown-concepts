@@ -1,20 +1,20 @@
 'use strict'
 
 const xtend = require('xtend')
-const ReactMarkdown = require('./react-markdown')
+const ReactMarkdownConcepts = require('./react-markdown-concepts')
 const htmlParser = require('./plugins/html-parser')
 
 const parseHtml = htmlParser()
 
-function ReactMarkdownWithHtml(props) {
+function ReactMarkdownConceptsWithHtml(props) {
   const astPlugins = [parseHtml].concat(props.astPlugins || [])
-  return ReactMarkdown(xtend(props, {astPlugins}))
+  return ReactMarkdownConcepts(xtend(props, {astPlugins}))
 }
 
-ReactMarkdownWithHtml.defaultProps = ReactMarkdown.defaultProps
-ReactMarkdownWithHtml.propTypes = ReactMarkdown.propTypes
-ReactMarkdownWithHtml.types = ReactMarkdown.types
-ReactMarkdownWithHtml.renderers = ReactMarkdown.renderers
-ReactMarkdownWithHtml.uriTransformer = ReactMarkdown.uriTransformer
+ReactMarkdownConceptsWithHtml.defaultProps = ReactMarkdownConcepts.defaultProps
+ReactMarkdownConceptsWithHtml.propTypes = ReactMarkdownConcepts.propTypes
+ReactMarkdownConceptsWithHtml.types = ReactMarkdownConcepts.types
+ReactMarkdownConceptsWithHtml.renderers = ReactMarkdownConcepts.renderers
+ReactMarkdownConceptsWithHtml.uriTransformer = ReactMarkdownConcepts.uriTransformer
 
-module.exports = ReactMarkdownWithHtml
+module.exports = ReactMarkdownConceptsWithHtml

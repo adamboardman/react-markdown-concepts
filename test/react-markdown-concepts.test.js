@@ -10,7 +10,7 @@ const ReactDom = require('react-dom/server')
 const renderer = require('react-test-renderer')
 const shortcodes = require('remark-shortcodes')
 const htmlParser = require('../src/plugins/html-parser')
-const Markdown = require('../src/react-markdown')
+const Markdown = require('../src/react-markdown-concepts')
 const MarkdownWithHtml = require('../src/with-html')
 
 Enzyme.configure({adapter: new Adapter()})
@@ -784,4 +784,15 @@ test('should be able to override remark-parse plugin options', () => {
 
   expect(pedantic.toJSON()).toMatchSnapshot()
   expect(unscholarly.toJSON()).not.toBe(pedantic.toJSON())
+})
+
+test('tag matching should show tag', () => {
+  const input = 'some text with a tag in it';
+  const concepts = [
+    {index: 'tag', tags: ['tag', 'tagger'], summary: 'tag - expanding link'},
+    {index: 'text', tags: ['text', 'some text'], summary: 'text to be matched'}
+    ];
+  const component = renderer.create(<Markdown source={input} concepts={concepts} />);
+
+  expect(component.toJSON()).toMatchSnapshot()
 })

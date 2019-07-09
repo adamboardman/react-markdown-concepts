@@ -24,7 +24,7 @@ Changes are automatically rendered as you type.
 ## How about some code?
 \`\`\`js
 var React = require('react');
-var Markdown = require('react-markdown');
+var Markdown = require('react-markdown-concepts');
 
 React.render(
   <Markdown source="# Your markdown here" />,

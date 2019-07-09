@@ -34,3 +34,5 @@ lib
 
 # Yarn lockfile
 yarn.lock
+
+.idea

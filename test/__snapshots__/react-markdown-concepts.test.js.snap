@@ -2104,6 +2104,23 @@ Array [
 ]
 `;
 
+exports[`tag matching should show tag 1`] = `
+<p>
+  <a
+    href="/concept/text"
+  >
+    some text
+  </a>
+   with a 
+  <a
+    href="/concept/tag"
+  >
+    tag
+  </a>
+   in it
+</p>
+`;
+
 exports[`uses passed classname for root component 1`] = `
 <div
   className="md"

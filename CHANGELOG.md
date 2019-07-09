@@ -67,7 +67,7 @@ All notable changes will be documented in this file.
 - `text` is now a first-class node + renderer - if you are using `allowedNodes`, it needs to be included in this list. Since it is now a React component, it will be passed an object of props instead of the old approach where a string was passed. `children` will contain the actual text string.
 - On React >= 16.2, if no `className` prop is provided, a fragment will be used instead of a div. To always render a div, pass `'div'` as the `root` renderer.
 - On React >= 16.2, escaped HTML will no longer be rendered with div/span containers
-- The UMD bundle now exports the component as `window.ReactMarkdown` instead of `window.reactMarkdown`
+- The UMD bundle now exports the component as `window.ReactMarkdownConcepts` instead of `window.reactMarkdownConcepts`
 
 ### Added
 
@@ -284,7 +284,7 @@ All notable changes will be documented in this file.
 
 ### Added
 
-- Added UMD-build (`umd/react-markdown.js`) (Espen Hovlandsdal)
+- Added UMD-build (`umd/react-markdown-concepts.js`) (Espen Hovlandsdal)
 
 ## 2.4.1 - 2016-07-09
 

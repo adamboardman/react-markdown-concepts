@@ -8,12 +8,12 @@ const prod = process.env.NODE_ENV === 'production'
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  entry: [path.join(__dirname, 'src', 'react-markdown.js')],
+  entry: [path.join(__dirname, 'src', 'react-markdown-concepts.js')],
   output: {
-    library: 'ReactMarkdown',
+    library: 'ReactMarkdownConcepts',
     libraryTarget: 'umd',
     path: path.join(__dirname, 'umd'),
-    filename: 'react-markdown.js'
+    filename: 'react-markdown-concepts.js'
   },
   externals: {
     react: {
