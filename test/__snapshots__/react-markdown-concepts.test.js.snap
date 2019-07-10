@@ -2106,17 +2106,45 @@ Array [
 
 exports[`tag matching should show tag 1`] = `
 <p>
-  <a
-    href="/concept/text"
-  >
-    some text
-  </a>
+  <span>
+    <a
+      href="/concept/text"
+      id="a-text"
+      onClick={[Function]}
+    >
+      some text
+    </a>
+    <span
+      className="hidden-span"
+      id="s-text"
+    >
+      <a
+        href="/concept/text"
+      >
+         summary of text
+      </a>
+    </span>
+  </span>
    with a 
-  <a
-    href="/concept/tag"
-  >
-    tag
-  </a>
+  <span>
+    <a
+      href="/concept/tag"
+      id="a-tag"
+      onClick={[Function]}
+    >
+      Tag
+    </a>
+    <span
+      className="hidden-span"
+      id="s-tag"
+    >
+      <a
+        href="/concept/tag"
+      >
+         summary of expanding link
+      </a>
+    </span>
+  </span>
    in it
 </p>
 `;

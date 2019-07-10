@@ -14,6 +14,7 @@
     "build": "npm run clean && npm run compile && NODE_ENV=production webpack -p && npm run build:demo",
     "build:demo": "NODE_ENV=production webpack -p --config webpack.config.demo.js",
     "postbuild": "echo 'Ensuring ES5 compatibility...' && uglifyjs umd/react-markdown-concepts.js > /dev/null && echo 'Yep!'",
+    "pack": "npm run clean && npm run compile && npm pack",
     "clean": "rimraf lib/",
     "compile": "babel --copy-files -d lib/ src/",
     "deploy": "gh-pages-deploy",

@@ -10,6 +10,7 @@ const createElement = React.createElement
 module.exports = {
   break: 'br',
   paragraph: 'p',
+  span: 'span',
   emphasis: 'em',
   strong: 'strong',
   thematicBreak: 'hr',
@@ -27,6 +28,8 @@ module.exports = {
 
   root: Root,
   text: TextRenderer,
+  hiddenSpan: HiddenSpanRenderer,
+  hiderLink: HiderLinkRenderer,
   list: List,
   listItem: ListItem,
   definition: NullRenderer,
@@ -40,6 +43,28 @@ module.exports = {
 
 function TextRenderer(props) {
   return supportsStringRender ? props.children : createElement('span', null, props.children)
+}
+
+function HiddenSpanRenderer(props) {
+  return createElement('span', {id: props.id, style:{display:"none"}}, props.children)
+}
+
+function ShowOrHideConcept(tag, e) {
+  e.preventDefault();
+  const anchor = document.getElementById(`a-${  tag}`);
+  const span = document.getElementById(`s-${  tag}`);
+  if (span && span.className === 'hidden-span-show') {
+    span.className = 'hidden-span';
+    anchor.className = '';
+  } else {
+    span.className = 'hidden-span-show';
+    anchor.className = 'hidden-anchor-show';
+  }
+}
+
+function HiderLinkRenderer(props) {
+  const showOrHideConcept = ShowOrHideConcept.bind(null, props.conceptIndex)
+  return createElement('a', {id: props.id, href: props.href, onClick:showOrHideConcept}, props.children)
 }
 
 function Root(props) {
@@ -95,6 +120,9 @@ function InlineCode(props) {
   return createElement('code', getCoreProps(props), props.children)
 }
 
+/**
+ * @return {null}
+ */
 function Html(props) {
   if (props.skipHtml) {
     return null
@@ -120,6 +148,9 @@ function VirtualHtml(props) {
   return createElement(props.tag, getCoreProps(props), props.children)
 }
 
+/**
+ * @return {null}
+ */
 function NullRenderer() {
   return null
 }

@@ -3,8 +3,9 @@ const conceptsList = [];
 
 function locator(value, fromIndex) {
     let retIndex = -1;
+    const lowerValue = value.toLowerCase();
     tagsList.forEach(function (tag) {
-        const index = value.indexOf(tag, fromIndex);
+        const index = lowerValue.indexOf(tag, fromIndex);
         if (index > -1 && (index < retIndex || retIndex === -1)) {
             retIndex = index;
         }
@@ -24,9 +25,12 @@ module.exports = function inlinePlugin(concepts) {
 
     function inlineTokenizer(eat, value, silent) {
         let tagSelected = null;
+        let caseValueSelected = null;
+        const lowerValue = value.toLowerCase();
         tagsList.forEach(function (tag) {
-            if (tagSelected === null && (value.substring(0, tag.length) === tag)) {
+            if (tagSelected === null && (lowerValue.substring(0, tag.length) === tag)) {
                 tagSelected = tag;
+                caseValueSelected = value.substring(0, tag.length);
             }
         });
         if (tagSelected !== null) {
@@ -41,16 +45,49 @@ module.exports = function inlinePlugin(concepts) {
                 }
             });
 
-            return eat(tagSelected)({
-                type: 'link',
-                url: "/concept/"+conceptSelected.index,
+            return eat(caseValueSelected)({
+                type: 'span',
                 children: [{
-                    type: 'text',
+                    type: 'hiderLink',
+                    id: `a-${conceptSelected.index}`,
                     position: {
                         start: eat.now(),
                         indent: []
                     },
-                    value:tagSelected
+                    url: `/concept/${conceptSelected.index}`,
+                    conceptIndex: conceptSelected.index,
+                    children: [{
+                        type: 'text',
+                        position: {
+                            start: eat.now(),
+                            indent: []
+                        },
+                        value: caseValueSelected
+                    }]
+                }, {
+                    type: 'span',
+                    id: `s-${conceptSelected.index}`,
+                    className: "hidden-span",
+                    position: {
+                        start: eat.now(),
+                        indent: []
+                    },
+                    children: [{
+                        type: 'link',
+                        position: {
+                            start: eat.now(),
+                            indent: []
+                        },
+                        url: `/concept/${conceptSelected.index}`,
+                        children: [{
+                            type: 'text',
+                            position: {
+                                start: eat.now(),
+                                indent: []
+                            },
+                            value: ` ${conceptSelected.summary}`
+                        }]
+                    }]
                 }]
             })
         }

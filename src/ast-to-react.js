@@ -103,6 +103,20 @@ function getNodeProps(node, key, opts, renderer, parent, index) {
       break
     case 'link':
       assignDefined(props, {
+        id: node.id,
+        title: node.title || undefined,
+        target:
+            typeof opts.linkTarget === 'function'
+                ? opts.linkTarget(node.url, node.children, node.title)
+                : opts.linkTarget,
+        href: opts.transformLinkUri
+            ? opts.transformLinkUri(node.url, node.children, node.title)
+            : node.url,
+      })
+      break
+    case 'hiderLink':
+      assignDefined(props, {
+        id: node.id,
         title: node.title || undefined,
         target:
           typeof opts.linkTarget === 'function'
@@ -110,7 +124,8 @@ function getNodeProps(node, key, opts, renderer, parent, index) {
             : opts.linkTarget,
         href: opts.transformLinkUri
           ? opts.transformLinkUri(node.url, node.children, node.title)
-          : node.url
+          : node.url,
+        conceptIndex: node.conceptIndex,
       })
       break
     case 'image':

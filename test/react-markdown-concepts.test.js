@@ -787,10 +787,10 @@ test('should be able to override remark-parse plugin options', () => {
 })
 
 test('tag matching should show tag', () => {
-  const input = 'some text with a tag in it';
+  const input = 'some text with a Tag in it';
   const concepts = [
-    {index: 'tag', tags: ['tag', 'tagger'], summary: 'tag - expanding link'},
-    {index: 'text', tags: ['text', 'some text'], summary: 'text to be matched'}
+    {index: 'tag', tags: ['tag', 'tagger'], summary: 'summary of expanding link'},
+    {index: 'text', tags: ['text', 'some text'], summary: 'summary of text'}
     ];
   const component = renderer.create(<Markdown source={input} concepts={concepts} />);
 
