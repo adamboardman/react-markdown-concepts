@@ -2109,14 +2109,14 @@ exports[`tag matching should show tag 1`] = `
   <span>
     <a
       href="/concept/text"
-      id="a-text"
+      id="a-text-1-10"
       onClick={[Function]}
     >
       some text
     </a>
     <span
       className="hidden-span"
-      id="s-text"
+      id="s-text-1-10"
     >
       <a
         href="/concept/text"
@@ -2129,14 +2129,14 @@ exports[`tag matching should show tag 1`] = `
   <span>
     <a
       href="/concept/tag"
-      id="a-tag"
+      id="a-tag-1-21"
       onClick={[Function]}
     >
       Tag
     </a>
     <span
       className="hidden-span"
-      id="s-tag"
+      id="s-tag-1-21"
     >
       <a
         href="/concept/tag"

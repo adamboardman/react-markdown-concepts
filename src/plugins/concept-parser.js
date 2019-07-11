@@ -49,13 +49,13 @@ module.exports = function inlinePlugin(concepts) {
                 type: 'span',
                 children: [{
                     type: 'hiderLink',
-                    id: `a-${conceptSelected.index}`,
+                    id: `a-${conceptSelected.index}-${eat.now().line}-${eat.now().column}`,
                     position: {
                         start: eat.now(),
                         indent: []
                     },
                     url: `/concept/${conceptSelected.index}`,
-                    conceptIndex: conceptSelected.index,
+                    conceptIndex: `${conceptSelected.index}-${eat.now().line}-${eat.now().column}`,
                     children: [{
                         type: 'text',
                         position: {
@@ -66,7 +66,7 @@ module.exports = function inlinePlugin(concepts) {
                     }]
                 }, {
                     type: 'span',
-                    id: `s-${conceptSelected.index}`,
+                    id: `s-${conceptSelected.index}-${eat.now().line}-${eat.now().column}`,
                     className: "hidden-span",
                     position: {
                         start: eat.now(),
