@@ -54,7 +54,7 @@ module.exports = function inlinePlugin(concepts) {
                         start: eat.now(),
                         indent: []
                     },
-                    url: `/concept/${conceptSelected.index}`,
+                    url: `#concepts/${conceptSelected.index}`,
                     conceptIndex: `${conceptSelected.index}-${eat.now().line}-${eat.now().column}`,
                     children: [{
                         type: 'text',
@@ -78,7 +78,7 @@ module.exports = function inlinePlugin(concepts) {
                             start: eat.now(),
                             indent: []
                         },
-                        url: `/concept/${conceptSelected.index}`,
+                        url: `#concepts/${conceptSelected.index}`,
                         children: [{
                             type: 'text',
                             position: {
